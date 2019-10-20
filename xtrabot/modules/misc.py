@@ -22,12 +22,12 @@ class Misc(loader.Module):
     def __init__(self):
         self.name = "misc"
         super().__init__(self.install)
-        self.addxconfig("installed message", "Yay, {shortname} has been added to your modules!!", "the message to the left is the one pops up when the module is installed")
+        self.addxconfig("installed message", "Yay, this module has been added to your module pack!!", "the message to the left is the one pops up when the module is installed")
         self.addxconfig("directory", "xtrabot/modules/", "is the modules directory")
 
     async def install(self, event):
         reply = await event.get_reply_message()
-        text = await utils.answer(event, "Processing...", call="reply")
+        text = await event.reply("Processing...")
         hmm = await event.client.download_media(reply, self.xconfig["directory"])
         path = Path(hmm)
         try:
